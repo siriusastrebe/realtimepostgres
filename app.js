@@ -78,7 +78,7 @@ Drop function accounts_insert;
 // Drop a trigger
 drop trigger accounts_insert_trigger on accounts;
 
-// Notifying an entire row as JSON (Not scalable since payload sizes cap out at 8kb)
+// Notifying an entire row as JSON (Not scalable since notification payload sizes cap out at 8kb)
 // CREATE OR REPLACE FUNCTION accounts_insert() RETURNS trigger AS $$
 // DECLARE
 // BEGIN
@@ -138,8 +138,6 @@ order by table_schema,
 
 
 General notes:
-connection pools can't be used to monitor LISTEN/NOTIFY streams
+connection pools can't be used to monitor LISTEN/NOTIFY streams. Use pg.Client instead
 Triggers can't be used for each row on TRUNCATE, otherwise you will see the error ERROR:  TRUNCATE FOR EACH ROW triggers are not supported
-
-
 */
